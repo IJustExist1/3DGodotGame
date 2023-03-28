@@ -1,0 +1,208 @@
+[gd_scene load_steps=12 format=3 uid="uid://bvypawt64m7ak"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_p2vbh"]
+[ext_resource type="Environment" uid="uid://c0qtcquflki5f" path="res://player.tres" id="2_m5vmu"]
+
+[sub_resource type="Animation" id="Animation_vq7me"]
+resource_name = "CameraBob"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(2.5, -2.5, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.1309, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(2, 2.2974, 2.92817, 1.51572),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.15, 0, 0), Vector3(-0.15, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rgtsg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:environment:volumetric_fog_density")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:environment:adjustment_saturation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_a22ik"]
+resource_name = "spooky_off"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:environment:volumetric_fog_density")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(4.59479, 4.92458),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:environment:adjustment_saturation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.73208, 3.605),
+"update": 0,
+"values": [0.5, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_433jn"]
+resource_name = "spooky_on"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:environment:volumetric_fog_density")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(4, 2.54912),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:environment:adjustment_saturation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(3.4822, 2.46229),
+"update": 0,
+"values": [1.0, 0.5]
+}
+
+[sub_resource type="Animation" id="Animation_4wxco"]
+resource_name = "thirdperson"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.21914, 2.92817),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_adxti"]
+resource_name = "firstperson"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.82843, 3.03143),
+"update": 0,
+"values": [Vector3(0, 0, 5), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gt8wp"]
+_data = {
+"CameraBob": SubResource("Animation_vq7me"),
+"RESET": SubResource("Animation_rgtsg"),
+"firstperson": SubResource("Animation_adxti"),
+"spooky_off": SubResource("Animation_a22ik"),
+"spooky_on": SubResource("Animation_433jn"),
+"thirdperson": SubResource("Animation_4wxco")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_002qg"]
+radius = 0.585291
+height = 2.55427
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jkxkm"]
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_p2vbh")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Cam" type="Camera3D" parent="Head"]
+keep_aspect = 0
+environment = ExtResource("2_m5vmu")
+fov = 130.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Head/Cam"]
+libraries = {
+"": SubResource("AnimationLibrary_gt8wp")
+}
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_002qg")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.15064, 0, 0, 0, 1.27008, 0, 0, 0, 1.16548, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_jkxkm")
