@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvypawt64m7ak"]
+[gd_scene load_steps=15 format=3 uid="uid://bvypawt64m7ak"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_p2vbh"]
 [ext_resource type="Environment" uid="uid://c0qtcquflki5f" path="res://player.tres" id="2_m5vmu"]
 
 [sub_resource type="Animation" id="Animation_vq7me"]
 resource_name = "CameraBob"
-length = 0.6
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -14,10 +14,10 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(2.5, -2.5, 1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.1309, 0, 0), Vector3(0, 0, 0)]
+"values": []
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -26,10 +26,10 @@ tracks/1/path = NodePath(".:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(2, 2.2974, 2.92817, 1.51572),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1.68179, 0.34151, 1.93187),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.15, 0, 0), Vector3(-0.15, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0.3, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_rgtsg"]
@@ -81,6 +81,34 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:fov")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [130.0]
+}
+
+[sub_resource type="Animation" id="Animation_adxti"]
+resource_name = "firstperson"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2.82843, 3.03143),
+"update": 0,
+"values": [Vector3(0, 0, 5), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_a22ik"]
@@ -139,6 +167,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_4wxco"]
 resource_name = "thirdperson"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -146,35 +175,60 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(2.21914, 2.92817),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 5)]
 }
 
-[sub_resource type="Animation" id="Animation_adxti"]
-resource_name = "firstperson"
+[sub_resource type="Animation" id="Animation_oeqjd"]
+resource_name = "zoomin"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath(".:fov")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(2.82843, 3.03143),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.482968, 2.07053),
 "update": 0,
-"values": [Vector3(0, 0, 5), Vector3(0, 0, 0)]
+"values": [130.0, 30.0]
 }
+
+[sub_resource type="Animation" id="Animation_lbph2"]
+resource_name = "zoomout"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.329877, 2.07053),
+"update": 0,
+"values": [30.0, 130.0]
+}
+
+[sub_resource type="Animation" id="Animation_oeeyi"]
+resource_name = "idle"
+length = 0.1
+loop_mode = 1
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gt8wp"]
 _data = {
 "CameraBob": SubResource("Animation_vq7me"),
 "RESET": SubResource("Animation_rgtsg"),
 "firstperson": SubResource("Animation_adxti"),
+"idle": SubResource("Animation_oeeyi"),
 "spooky_off": SubResource("Animation_a22ik"),
 "spooky_on": SubResource("Animation_433jn"),
-"thirdperson": SubResource("Animation_4wxco")
+"thirdperson": SubResource("Animation_4wxco"),
+"zoomin": SubResource("Animation_oeqjd"),
+"zoomout": SubResource("Animation_lbph2")
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_002qg"]
@@ -204,5 +258,5 @@ libraries = {
 shape = SubResource("CapsuleShape3D_002qg")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.15064, 0, 0, 0, 1.27008, 0, 0, 0, 1.16548, 0, 0, 0)
+transform = Transform3D(1.151, 0, 0, 0, 1.5, 0, 0, 0, 1.165, 0, 0.255516, 0)
 mesh = SubResource("CapsuleMesh_jkxkm")
