@@ -43,7 +43,7 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_28anw"]
 size = Vector3(10.6087, 5, 1)
 
-[node name="World" type="Node3D"]
+[node name="InTheDark" type="Node3D"]
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.937775, 0.159901, -0.308236, -0.00137299, 0.889367, 0.457192, 0.34724, -0.42832, 0.834246, 0, 6.19754, 0)
@@ -51,53 +51,55 @@ transform = Transform3D(0.937775, 0.159901, -0.308236, -0.00137299, 0.889367, 0.
 [node name="Player" parent="." instance=ExtResource("1_q07ec")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54263, 0.86824, 3.26428)
 
-[node name="Floors" type="StaticBody3D" parent="."]
+[node name="World" type="Node3D" parent="."]
+
+[node name="Floors" type="StaticBody3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 collision_mask = 2
 
-[node name="Collider" type="CollisionShape3D" parent="Floors"]
+[node name="Collider" type="CollisionShape3D" parent="World/Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 9)
 shape = SubResource("BoxShape3D_h6tns")
 
-[node name="Planks" type="MeshInstance3D" parent="Floors"]
+[node name="Planks" type="MeshInstance3D" parent="World/Floors"]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 30, 0, 0, 15)
 material_override = SubResource("StandardMaterial3D_82ftw")
 mesh = SubResource("BoxMesh_6xv27")
 
-[node name="Tile" type="MeshInstance3D" parent="Floors"]
+[node name="Tile" type="MeshInstance3D" parent="World/Floors"]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 10, 10, 0, -5)
 material_override = SubResource("StandardMaterial3D_40q1u")
 mesh = SubResource("BoxMesh_6xv27")
 
-[node name="Tile2" type="MeshInstance3D" parent="Floors"]
+[node name="Tile2" type="MeshInstance3D" parent="World/Floors"]
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 30, 15, 0, 15)
 material_override = SubResource("StandardMaterial3D_40q1u")
 mesh = SubResource("BoxMesh_6xv27")
 
-[node name="Grass" type="MeshInstance3D" parent="Floors"]
+[node name="Grass" type="MeshInstance3D" parent="World/Floors"]
 transform = Transform3D(51.6, 0, 0, 0, 1, 0, 0, 0, 44.1, 5, -0.1, 9)
 material_override = SubResource("StandardMaterial3D_7voaf")
 mesh = SubResource("BoxMesh_6xv27")
 
-[node name="Walls" type="Node3D" parent="."]
+[node name="Walls" type="Node3D" parent="World"]
 
-[node name="Wall1" type="StaticBody3D" parent="Walls"]
+[node name="Wall1" type="StaticBody3D" parent="World/Walls"]
 collision_mask = 2
 
-[node name="Collider" type="CollisionShape3D" parent="Walls/Wall1"]
+[node name="Collider" type="CollisionShape3D" parent="World/Walls/Wall1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -5)
 shape = SubResource("BoxShape3D_pankj")
 
-[node name="Bricks" type="MeshInstance3D" parent="Walls/Wall1"]
+[node name="Bricks" type="MeshInstance3D" parent="World/Walls/Wall1"]
 transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 10, 0, 2, -5)
 material_override = SubResource("StandardMaterial3D_ls23p")
 mesh = SubResource("BoxMesh_dpjdr")
 
-[node name="Bricks2" type="MeshInstance3D" parent="Walls/Wall1"]
+[node name="Bricks2" type="MeshInstance3D" parent="World/Walls/Wall1"]
 transform = Transform3D(10.5, 0, 0, 0, 5, 0, 0, 0, 1, 4.75, 2, 0)
 material_override = SubResource("StandardMaterial3D_ls23p")
 mesh = SubResource("BoxMesh_dpjdr")
 
-[node name="Collider2" type="CollisionShape3D" parent="Walls/Wall1"]
+[node name="Collider2" type="CollisionShape3D" parent="World/Walls/Wall1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76443, 2, 0)
 shape = SubResource("BoxShape3D_28anw")

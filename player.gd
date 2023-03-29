@@ -14,8 +14,8 @@ extends CharacterBody3D
 var look_rot = Vector3.ZERO
 var move_dir = Vector3.ZERO
 
-var isThirdperson = false
 var debug = false
+var zoomedIn = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -23,14 +23,17 @@ func _ready():
 
 func _physics_process(delta):
 	
-	print(velocity.z)
+	if Input.get_action_strength("forward") >= 0.1:
+		animplayer.play("CameraBob")
+	elif Input.get_action_strength("forward") < 0.09:
+		animplayer.play("idle")
 	
-	if Input.is_action_just_pressed("switch_perspective") and isThirdperson == false:
-		animplayer.play("thirdperson")
-		isThirdperson = true
-	elif Input.is_action_just_pressed("switch_perspective") and isThirdperson == true:
-		animplayer.play("firstperson")
-		isThirdperson = false
+	if Input.is_action_just_pressed("zoom") and zoomedIn == false:
+		animplayer.play("zoomin")
+		zoomedIn = true
+	elif Input.is_action_just_pressed("zoom") and zoomedIn == true:
+		animplayer.play("zoomout")
+		zoomedIn = false
 	
 	if Input.is_action_just_pressed("debug") and debug == false:
 		animplayer.play("spooky_on")
