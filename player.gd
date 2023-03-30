@@ -4,18 +4,20 @@ extends CharacterBody3D
 @export var accel = 10
 @export var gravity = 50
 @export var jump = 15
-@export var sensitivity = 0.3
+@export var sensitivity = 0.8
 @export var max_angle = 90
 @export var min_angle = -80
 
 @onready var head = $Head
 @onready var animplayer = $Head/Cam/AnimationPlayer
+@onready var croucherthingy = $Collider/AnimationPlayer
 
 var look_rot = Vector3.ZERO
 var move_dir = Vector3.ZERO
 
 var debug = false
 var zoomedIn = false
+var crouching = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -23,9 +25,16 @@ func _ready():
 
 func _physics_process(delta):
 	
-	if Input.get_action_strength("forward") >= 0.1:
+	if Input.is_action_just_pressed("crouch") and crouching == false:
+		croucherthingy.play("crouch_on")
+		crouching = true
+	elif Input.is_action_just_pressed("crouch") and crouching == true:
+		croucherthingy.play("crouch_off")
+		crouching = false
+	
+	if Input.get_action_strength("forward") >= 0.1 || Input.get_action_strength("backward") >= 0.1:
 		animplayer.play("CameraBob")
-	elif Input.get_action_strength("forward") < 0.09:
+	elif Input.get_action_strength("forward") < 0.09 || Input.get_action_strength("backward") > 0.09:
 		animplayer.play("idle")
 	
 	if Input.is_action_just_pressed("zoom") and zoomedIn == false:
@@ -65,7 +74,6 @@ func _physics_process(delta):
 	set_up_direction(Vector3.UP)
 	move_and_slide()
 	velocity = velocity
-
 
 func _input(event):
 	if event is InputEventMouseMotion:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bvypawt64m7ak"]
+[gd_scene load_steps=19 format=3 uid="uid://bvypawt64m7ak"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_p2vbh"]
 [ext_resource type="Environment" uid="uid://c0qtcquflki5f" path="res://player.tres" id="2_m5vmu"]
@@ -111,6 +111,11 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 5), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_oeeyi"]
+resource_name = "idle"
+length = 0.1
+loop_mode = 1
+
 [sub_resource type="Animation" id="Animation_a22ik"]
 resource_name = "spooky_off"
 tracks/0/type = "value"
@@ -123,7 +128,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(4.59479, 4.92458),
 "update": 0,
-"values": [1.0, 0.0]
+"values": [0.5, 0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -150,7 +155,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(4, 2.54912),
 "update": 0,
-"values": [0.0, 1.0]
+"values": [0.0, 0.5]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -213,11 +218,6 @@ tracks/0/keys = {
 "values": [30.0, 130.0]
 }
 
-[sub_resource type="Animation" id="Animation_oeeyi"]
-resource_name = "idle"
-length = 0.1
-loop_mode = 1
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gt8wp"]
 _data = {
 "CameraBob": SubResource("Animation_vq7me"),
@@ -234,6 +234,95 @@ _data = {
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_002qg"]
 radius = 0.585291
 height = 2.55427
+
+[sub_resource type="Animation" id="Animation_1qtmj"]
+resource_name = "crouch_on"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1.8025, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1, 0.5, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1.93187, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wve3h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pe067"]
+resource_name = "crouch_off"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.466516, 1),
+"update": 0,
+"values": [Vector3(1, 0.5, 1), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.554785, 1),
+"update": 0,
+"values": [Vector3(0, 0.5, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g3dxd"]
+_data = {
+"RESET": SubResource("Animation_wve3h"),
+"crouch_off": SubResource("Animation_pe067"),
+"crouch_on": SubResource("Animation_1qtmj")
+}
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jkxkm"]
 
@@ -256,6 +345,11 @@ libraries = {
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_002qg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Collider"]
+libraries = {
+"": SubResource("AnimationLibrary_g3dxd")
+}
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.151, 0, 0, 0, 1.5, 0, 0, 0, 1.165, 0, 0.255516, 0)

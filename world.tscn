@@ -83,23 +83,23 @@ mesh = SubResource("BoxMesh_6xv27")
 
 [node name="Walls" type="Node3D" parent="World"]
 
-[node name="Wall1" type="StaticBody3D" parent="World/Walls"]
+[node name="Wall" type="StaticBody3D" parent="World/Walls"]
 collision_mask = 2
 
-[node name="Collider" type="CollisionShape3D" parent="World/Walls/Wall1"]
+[node name="Collider" type="CollisionShape3D" parent="World/Walls/Wall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -5)
 shape = SubResource("BoxShape3D_pankj")
 
-[node name="Bricks" type="MeshInstance3D" parent="World/Walls/Wall1"]
+[node name="Bricks" type="MeshInstance3D" parent="World/Walls/Wall"]
 transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 10, 0, 2, -5)
 material_override = SubResource("StandardMaterial3D_ls23p")
 mesh = SubResource("BoxMesh_dpjdr")
 
-[node name="Bricks2" type="MeshInstance3D" parent="World/Walls/Wall1"]
+[node name="Bricks2" type="MeshInstance3D" parent="World/Walls/Wall"]
 transform = Transform3D(10.5, 0, 0, 0, 5, 0, 0, 0, 1, 4.75, 2, 0)
 material_override = SubResource("StandardMaterial3D_ls23p")
 mesh = SubResource("BoxMesh_dpjdr")
 
-[node name="Collider2" type="CollisionShape3D" parent="World/Walls/Wall1"]
+[node name="Collider2" type="CollisionShape3D" parent="World/Walls/Wall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76443, 2, 0)
 shape = SubResource("BoxShape3D_28anw")
