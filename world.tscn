@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://bbc774k3uuxqp"]
+[gd_scene load_steps=17 format=3 uid="uid://bbc774k3uuxqp"]
 
 [ext_resource type="PackedScene" uid="uid://bvypawt64m7ak" path="res://player.tscn" id="1_q07ec"]
 [ext_resource type="Texture2D" uid="uid://2fegxlmygnfn" path="res://assets/floor/wood_planks.png" id="2_g8p33"]
 [ext_resource type="Texture2D" uid="uid://b3gyee18was0t" path="res://assets/floor/grass.png" id="3_773md"]
 [ext_resource type="Texture2D" uid="uid://b3gs2imhfqjm5" path="res://assets/floor/tile.png" id="3_ulm1x"]
 [ext_resource type="Texture2D" uid="uid://baift7h2cughj" path="res://assets/walls/brick_wall2.png" id="5_4nfbt"]
+[ext_resource type="Texture2D" uid="uid://dcnhkk07sqnd4" path="res://assets/general/concrete.png" id="6_guush"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h6tns"]
 size = Vector3(51.2152, 1, 44)
@@ -40,8 +41,14 @@ uv1_world_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_dpjdr"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s3tx1"]
+albedo_texture = ExtResource("6_guush")
+uv1_scale = Vector3(0.266, 0.266, 0.266)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_28anw"]
-size = Vector3(10.6087, 5, 1)
+size = Vector3(10.4929, 5, 0.994159)
 
 [node name="InTheDark" type="Node3D"]
 
@@ -96,10 +103,10 @@ material_override = SubResource("StandardMaterial3D_ls23p")
 mesh = SubResource("BoxMesh_dpjdr")
 
 [node name="Bricks2" type="MeshInstance3D" parent="World/Walls/Wall"]
-transform = Transform3D(10.5, 0, 0, 0, 5, 0, 0, 0, 1, 4.75, 2, 0)
-material_override = SubResource("StandardMaterial3D_ls23p")
+transform = Transform3D(10.5, 0, 0, 0, 5, 0, 0, 0, 1, 5.75, 2, -0.5)
+material_override = SubResource("StandardMaterial3D_s3tx1")
 mesh = SubResource("BoxMesh_dpjdr")
 
 [node name="Collider2" type="CollisionShape3D" parent="World/Walls/Wall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76443, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.79801, 2.01805, -0.512693)
 shape = SubResource("BoxShape3D_28anw")

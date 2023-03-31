@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bvypawt64m7ak"]
+[gd_scene load_steps=17 format=3 uid="uid://bvypawt64m7ak"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_p2vbh"]
 [ext_resource type="Environment" uid="uid://c0qtcquflki5f" path="res://player.tres" id="2_m5vmu"]
@@ -113,7 +113,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_oeeyi"]
 resource_name = "idle"
-length = 0.1
+length = 100.0
 loop_mode = 1
 
 [sub_resource type="Animation" id="Animation_a22ik"]
@@ -186,38 +186,6 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 5)]
 }
 
-[sub_resource type="Animation" id="Animation_oeqjd"]
-resource_name = "zoomin"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:fov")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.482968, 2.07053),
-"update": 0,
-"values": [130.0, 30.0]
-}
-
-[sub_resource type="Animation" id="Animation_lbph2"]
-resource_name = "zoomout"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:fov")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.329877, 2.07053),
-"update": 0,
-"values": [30.0, 130.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gt8wp"]
 _data = {
 "CameraBob": SubResource("Animation_vq7me"),
@@ -226,42 +194,12 @@ _data = {
 "idle": SubResource("Animation_oeeyi"),
 "spooky_off": SubResource("Animation_a22ik"),
 "spooky_on": SubResource("Animation_433jn"),
-"thirdperson": SubResource("Animation_4wxco"),
-"zoomin": SubResource("Animation_oeqjd"),
-"zoomout": SubResource("Animation_lbph2")
+"thirdperson": SubResource("Animation_4wxco")
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_002qg"]
 radius = 0.585291
 height = 2.55427
-
-[sub_resource type="Animation" id="Animation_1qtmj"]
-resource_name = "crouch_on"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1.8025, 1),
-"update": 0,
-"values": [Vector3(1, 1, 1), Vector3(1, 0.5, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1.93187, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.5, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_wve3h"]
 length = 0.001
@@ -317,6 +255,34 @@ tracks/1/keys = {
 "values": [Vector3(0, 0.5, 0), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_1qtmj"]
+resource_name = "crouch_on"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1.8025, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1, 0.5, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1.93187, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.5, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g3dxd"]
 _data = {
 "RESET": SubResource("Animation_wve3h"),
@@ -329,6 +295,8 @@ _data = {
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_p2vbh")
+max_angle = 0
+min_angle = 0
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

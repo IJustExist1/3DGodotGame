@@ -1,3 +1,4 @@
+
 extends CharacterBody3D
 
 @export var speed = 10
@@ -16,7 +17,6 @@ var look_rot = Vector3.ZERO
 var move_dir = Vector3.ZERO
 
 var debug = false
-var zoomedIn = false
 var crouching = false
 
 func _ready():
@@ -32,17 +32,10 @@ func _physics_process(delta):
 		croucherthingy.play("crouch_off")
 		crouching = false
 	
-	if Input.get_action_strength("forward") >= 0.1 || Input.get_action_strength("backward") >= 0.1:
+	if Input.get_action_strength("forward") >= 0.1 || Input.get_action_strength("backward") >= 0.1 || Input.get_action_strength("left") >= 0.1 || Input.get_action_strength("right") >= 0.1:
 		animplayer.play("CameraBob")
-	elif Input.get_action_strength("forward") < 0.09 || Input.get_action_strength("backward") > 0.09:
+	elif Input.get_action_strength("forward") < 0.09 || Input.get_action_strength("backward") > 0.09 || Input.get_action_strength("left") > 0.09 || Input.get_action_strength("right") > 0.09:
 		animplayer.play("idle")
-	
-	if Input.is_action_just_pressed("zoom") and zoomedIn == false:
-		animplayer.play("zoomin")
-		zoomedIn = true
-	elif Input.is_action_just_pressed("zoom") and zoomedIn == true:
-		animplayer.play("zoomout")
-		zoomedIn = false
 	
 	if Input.is_action_just_pressed("debug") and debug == false:
 		animplayer.play("spooky_on")
