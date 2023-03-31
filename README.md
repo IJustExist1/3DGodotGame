@@ -1,3 +1,3 @@
-# 3DGodotGame
+# In The Dark
 
-This is a 3D Game with the base source code for "In The Dark" but will be stripped of major features so yeah
+This is a Horror Game in developtment the source code will be free to use but will NOT by any means have the full games features
